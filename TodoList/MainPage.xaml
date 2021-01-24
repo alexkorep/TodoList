@@ -4,28 +4,35 @@
              x:Class="TodoList.MainPage"
              Title="TODO List">
 
-    <StackLayout>
-        <Frame BackgroundColor="DeepPink" Padding="24" CornerRadius="0">
-            <Label Text="TODO list" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <ListView x:Name="TodoListView" ItemsSource="{Binding TodoList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                     <ViewCell.ContextActions>
-                        <MenuItem Clicked="OnMore"
-                                  CommandParameter="{Binding .}"
-                                  Text="More" />
-                        <MenuItem Clicked="OnDelete"
-                                  CommandParameter="{Binding .}"
-                                  Text="Delete" IsDestructive="True" />
-                     </ViewCell.ContextActions>
-                     <StackLayout Padding="16,12">
-                          <Label Text="{Binding Title}" />
-                     </StackLayout>
-                  </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout>
+            <Frame BackgroundColor="DeepPink" Padding="24" CornerRadius="0">
+                <Label Text="TODO list" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <ListView x:Name="TodoListView" ItemsSource="{Binding TodoList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                         <ViewCell.ContextActions>
+                            <MenuItem Clicked="OnMore"
+                                      CommandParameter="{Binding .}"
+                                      Text="More" />
+                            <MenuItem Clicked="OnDelete"
+                                      CommandParameter="{Binding .}"
+                                      Text="Delete" IsDestructive="True" />
+                         </ViewCell.ContextActions>
+                         <StackLayout Padding="16,12">
+                              <Label Text="{Binding Title}" />
+                         </StackLayout>
+                      </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <Button x:Name="AddItemButton" Text="+"
+                Clicked="OnFabMenuClick" IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                Style="{StaticResource FABPrimary}"  />
+    </AbsoluteLayout>
 </ContentPage>

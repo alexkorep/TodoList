@@ -37,5 +37,27 @@ namespace TodoList
             var mi = ((MenuItem)sender);
             _todoListViewModel.DeleteItem((Models.TodoItem)mi.CommandParameter);
         }
+
+        private async Task NewItem()
+        {
+            string result = await DisplayPromptAsync("New item", "Please enter the title");
+            if (result != null)
+            {
+                _todoListViewModel.AddItem(result);
+            }
+        }
+
+        public void OnFabMenuClick(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                Device.BeginInvokeOnMainThread(
+                    async () =>
+                    {
+                        await NewItem();
+                    });
+
+            });
+        }
     }
 }

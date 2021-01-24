@@ -40,5 +40,14 @@ namespace TodoList.ViewModels
         {
             TodoList.Remove(item);
         }
+
+        public void AddItem(string text)
+        {
+            TodoList.Add(new TodoItem
+            {
+                Title = text,
+                Done = false,
+            });
+        }
     }
 }
