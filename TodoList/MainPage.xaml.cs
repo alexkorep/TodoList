@@ -11,6 +11,8 @@ namespace TodoList
 {
     public partial class MainPage : ContentPage
     {
+        private string TODO_LIST_PROP_NAME = "todos";
+
         private TodoListViewModel _todoListViewModel;
         public MainPage()
         {
@@ -18,24 +20,40 @@ namespace TodoList
             _todoListViewModel = new TodoListViewModel();
             BindingContext = _todoListViewModel;
 
-            // TODO Load todo list from the app properties
-            //if (Application.Current.Properties.ContainsKey("Name"))
-            //{
-            //    userNickName.Text = Application.Current.Properties["Name"].ToString();
-            //}
+            // Load todo list from the app properties
+            if (Application.Current.Properties.ContainsKey(TODO_LIST_PROP_NAME))
+            {
+                var list = Application.Current.Properties[TODO_LIST_PROP_NAME].ToString();
+                _todoListViewModel.Deserialize(list);
+            }
 
+            _todoListViewModel.PropertyChanged += _todoListViewModel_PropertyChanged;
+        }
+
+        private void _todoListViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var list = _todoListViewModel.Serialize();
+            Application.Current.Properties[TODO_LIST_PROP_NAME] = list;
+        }
+
+        private void Save()
+        {
+            var list = _todoListViewModel.Serialize();
+            Application.Current.Properties[TODO_LIST_PROP_NAME] = list;
         }
 
         public void OnDone(object sender, EventArgs e)
         {
             var mi = ((MenuItem)sender);
             _todoListViewModel.CheckItem((Models.TodoItem)mi.CommandParameter);
+            Save();
         }
 
         public void OnDelete(object sender, EventArgs e)
         {
             var mi = ((MenuItem)sender);
             _todoListViewModel.DeleteItem((Models.TodoItem)mi.CommandParameter);
+            Save();
         }
 
         private async Task NewItem()
@@ -44,6 +62,7 @@ namespace TodoList
             if (result != null)
             {
                 _todoListViewModel.AddItem(result);
+                Save();
             }
         }
 
@@ -60,10 +79,9 @@ namespace TodoList
             });
         }
 
-        public void ItemChecked(object sender, EventArgs e)
+        void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            var mi = ((MenuItem)sender);
-            _todoListViewModel.DeleteItem((Models.TodoItem)mi.CommandParameter);
+            Save();
         }
     }
 }

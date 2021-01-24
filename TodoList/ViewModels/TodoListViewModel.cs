@@ -37,7 +37,18 @@ namespace TodoList.ViewModels
             });
         }
 
-        public void CheckItem(TodoItem item)
+        internal string Serialize()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(TodoList);
+        }
+
+        internal void Deserialize(string list)
+        {
+            TodoList = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<TodoItem>>(list);
+        }
+
+
+public void CheckItem(TodoItem item)
         {
             int index = TodoList.IndexOf(item);
             TodoList.Remove(item);

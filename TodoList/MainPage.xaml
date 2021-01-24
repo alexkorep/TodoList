@@ -22,7 +22,9 @@
                                       Text="Delete" IsDestructive="True" />
                          </ViewCell.ContextActions>
                          <StackLayout Padding="16,12" Orientation="Horizontal">
-                            <CheckBox x:Name="DoneCheckbox" IsChecked="{Binding Done}" />
+                            <CheckBox x:Name="DoneCheckbox"
+                                      CheckedChanged="OnCheckBoxCheckedChanged"
+                                      IsChecked="{Binding Done}" />
                             <Label Text="{Binding Title}" />
                          </StackLayout>
                       </ViewCell>
