@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using TodoList.Models;
 
 namespace TodoList.ViewModels
@@ -22,7 +23,7 @@ namespace TodoList.ViewModels
             TodoList.Add(new TodoItem
             {
                 Title = "Buy milk",
-                Done = false,
+                Done = true,
             });
             TodoList.Add(new TodoItem
             {
@@ -33,6 +34,17 @@ namespace TodoList.ViewModels
             {
                 Title = "Learn C#",
                 Done = false,
+            });
+        }
+
+        public void CheckItem(TodoItem item)
+        {
+            int index = TodoList.IndexOf(item);
+            TodoList.Remove(item);
+            TodoList.Insert(index, new TodoItem
+            {
+                Title = item.Title,
+                Done = !item.Done,
             });
         }
 

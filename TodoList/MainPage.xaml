@@ -14,15 +14,16 @@
                     <DataTemplate>
                         <ViewCell>
                          <ViewCell.ContextActions>
-                            <MenuItem Clicked="OnMore"
+                            <MenuItem Clicked="OnDone"
                                       CommandParameter="{Binding .}"
-                                      Text="More" />
+                                      Text="Toggle" />
                             <MenuItem Clicked="OnDelete"
                                       CommandParameter="{Binding .}"
                                       Text="Delete" IsDestructive="True" />
                          </ViewCell.ContextActions>
-                         <StackLayout Padding="16,12">
-                              <Label Text="{Binding Title}" />
+                         <StackLayout Padding="16,12" Orientation="Horizontal">
+                            <CheckBox x:Name="DoneCheckbox" IsChecked="{Binding Done}" />
+                            <Label Text="{Binding Title}" />
                          </StackLayout>
                       </ViewCell>
                     </DataTemplate>

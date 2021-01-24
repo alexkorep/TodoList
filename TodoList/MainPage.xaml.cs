@@ -26,10 +26,10 @@ namespace TodoList
 
         }
 
-        public void OnMore(object sender, EventArgs e)
+        public void OnDone(object sender, EventArgs e)
         {
             var mi = ((MenuItem)sender);
-            DisplayAlert("More Context Action", mi.CommandParameter + " more context action", "OK");
+            _todoListViewModel.CheckItem((Models.TodoItem)mi.CommandParameter);
         }
 
         public void OnDelete(object sender, EventArgs e)
@@ -58,6 +58,12 @@ namespace TodoList
                     });
 
             });
+        }
+
+        public void ItemChecked(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            _todoListViewModel.DeleteItem((Models.TodoItem)mi.CommandParameter);
         }
     }
 }
