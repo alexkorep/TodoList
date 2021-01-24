@@ -11,7 +11,19 @@
         <ListView x:Name="TodoListView" ItemsSource="{Binding TodoList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" />
+                    <ViewCell>
+                     <ViewCell.ContextActions>
+                        <MenuItem Clicked="OnMore"
+                                  CommandParameter="{Binding .}"
+                                  Text="More" />
+                        <MenuItem Clicked="OnDelete"
+                                  CommandParameter="{Binding .}"
+                                  Text="Delete" IsDestructive="True" />
+                     </ViewCell.ContextActions>
+                     <StackLayout Padding="16,12">
+                          <Label Text="{Binding Title}" />
+                     </StackLayout>
+                  </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

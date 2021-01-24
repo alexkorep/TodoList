@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using TodoList.Models;
 
 namespace TodoList.ViewModels
@@ -35,6 +34,11 @@ namespace TodoList.ViewModels
                 Title = "Learn C#",
                 Done = false,
             });
+        }
+
+        public void DeleteItem(TodoItem item)
+        {
+            TodoList.Remove(item);
         }
     }
 }
