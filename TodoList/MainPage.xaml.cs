@@ -13,6 +13,16 @@ namespace TodoList
         public MainPage()
         {
             InitializeComponent();
+
+            BindingContext = new ViewModels.TodoListViewModel();
+            //TodoListView.ItemsSource = BindingContext.TodoList;
+
+            // TODO Load todo list from the app properties
+            //if (Application.Current.Properties.ContainsKey("Name"))
+            //{
+            //    userNickName.Text = Application.Current.Properties["Name"].ToString();
+            //}
+
         }
     }
 }
