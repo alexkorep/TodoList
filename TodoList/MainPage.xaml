@@ -6,10 +6,7 @@
 
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <StackLayout>
-            <Frame BackgroundColor="DeepPink" Padding="24" CornerRadius="0">
-                <Label Text="TODO list" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-            </Frame>
-            <ListView x:Name="TodoListView" ItemsSource="{Binding TodoList}">
+            <ListView x:Name="TodoListView" ItemsSource="{Binding TodoList}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -21,11 +18,15 @@
                                       CommandParameter="{Binding .}"
                                       Text="Delete" IsDestructive="True" />
                          </ViewCell.ContextActions>
-                         <StackLayout Padding="16,12" Orientation="Horizontal">
+                         <StackLayout Padding="8,12" Orientation="Horizontal">
                             <CheckBox x:Name="DoneCheckbox"
+                                      Scale="2"
+                                      Margin="8"
                                       CheckedChanged="OnCheckBoxCheckedChanged"
                                       IsChecked="{Binding Done}" />
-                            <Label Text="{Binding Title}" />
+                            <Label FontSize="60"
+                                   TextColor="Black"
+                                   Text="{Binding Title}" />
                          </StackLayout>
                       </ViewCell>
                     </DataTemplate>

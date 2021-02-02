@@ -47,7 +47,6 @@
     <AotAssemblies></AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidDexTool></AndroidDexTool>
-    <PublicSign>false</PublicSign>
     <NoStdLib>false</NoStdLib>
     <AndroidDexTool>d8</AndroidDexTool>
     <MandroidExtraArgs></MandroidExtraArgs>
